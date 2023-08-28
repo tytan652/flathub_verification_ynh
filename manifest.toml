@@ -1,0 +1,47 @@
+packaging_format = 2
+
+id = "flathub_verification"
+name = "Flathub Verification"
+description.en = "A simple app that set up the token to verify your apps on Flathub"
+description.fr = "Une app simple qui met en place le jeton pour vérifier vos applications sur Flathub"
+
+version = "0.1~ynh1"
+
+maintainers = ["tytan652"]
+
+[upstream]
+license = "GPL-3.0-or-later"
+
+[integration]
+yunohost = ">= 11.1"
+architectures = "all"
+multi_instance = true
+ldap = "not_relevant"
+sso = "not_relevant"
+disk = "1M"
+ram.build = "1M"
+ram.runtime = "1M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.flathub_token]
+    ask.en = "Flathub verification token"
+    ask.fr = "Jeton de vérification de Flathub"
+    type = "string"
+
+[resources]
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+    main.allowed="visitors"
+
+    well_known.url = "/.well-known/org.flathub.VerifiedApps.txt"
+    well_known.show_tile=false
+    well_known.allowed="visitors"
+    well_known.auth_header=false
+    well_known.protected=true
